@@ -1,15 +1,16 @@
-const getSingleBeer = (id)=>{
-	const singleBeer = `https://api.punkapi.com/v2/beers/${id}`;
-	const randomBeer = `https://api.punkapi.com/v2/beers/random`;
-       getBeers(singleBeer)
-      .then(data => {
-      	let pop = '';
-      	let random = '';
-      	
-      	
-      	let popUp = document.getElementById('popUp');
-      	console.log(data,65);
-      	pop = `<div class = popUp>
+const randomBeer = `https://api.punkapi.com/v2/beers/random`;
+const getSingleBeer = (id) => {
+    const singleBeer = `https://api.punkapi.com/v2/beers/${id}`;
+
+    getBeers(singleBeer)
+        .then(data => {
+            let pop = '';
+            let random = '';
+
+
+            let popUp = document.getElementById('popUp');
+
+            pop = `<div class="modal"></div><div class = popUp>
         <div class="close" onclick="close_popUp()">x</div>
         <div class="img_box">
         <img class="popUp_img" src="${data[0].image_url || './image/beer.jpg'}">
@@ -27,8 +28,8 @@ const getSingleBeer = (id)=>{
         </h3>
         <ul class="beer_info">
        ${data[0].food_pairing.map(el=> {
-       	console.log(el,884)
-       	return `<li>${el}</li>`
+        
+        return `<li>${el}</li>`
        }).join('')}
         </ul>
         </div>
@@ -36,67 +37,62 @@ const getSingleBeer = (id)=>{
         <h3>
             <b>You might also like:</b>
         </h3>
-        <div class="div_random">
+        <div class="div_random" id="randomContainer">
         <div class="popup_change" id="img"></div>
         <div class="popup_change" id="img1"></div>
         <div class="popup_change" id="img2"></div>
          </div>
-
-        
-         
-
-        
+  
         </div>
        
-      	</div>`
-      	
-        	
-      	
-      
-        	popUp.innerHTML = pop;
-        	
-      	
-      })
-      getBeers(randomBeer)
-.then((data)=>{
-	console.log(data);
-	let beer = '';
-	for(let i=0; i<data.length; i++){
-		beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url  || './image/beer.jpg'} class="randomImage"/>
-		<h5 class="random_name">${data[i].name}</h5>
-		
-		</div>`           
-	               }
-   img.innerHTML += beer;
-   
-        });
+        </div>`
 
- getBeers(randomBeer)
-.then((data)=>{
-  console.log(data);
-  let beer = '';
-  for(let i=0; i<data.length; i++){
-    beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url || './image/beer.jpg'} class="randomImage"/>
+            popUp.innerHTML = pop;
+            document.body.style.overflow = 'hidden';
+
+        })
+
+
+    getBeers(randomBeer)
+        .then((data) => {
+            console.log(data);
+            let beer = '';
+            for (let i = 0; i < data.length; i++) {
+                beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url  || './image/beer.jpg'} class="randomImage"/>
     <h5 class="random_name">${data[i].name}</h5>
     
-    </div>`           
-                 }
-   img1.innerHTML += beer;
-   
+    </div>`
+            }
+            img.innerHTML += beer;
+
         });
 
- getBeers(randomBeer)
-.then((data)=>{
-  console.log(data);
-  let beer = '';
-  for(let i=0; i<data.length; i++){
-    beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url || './image/beer.jpg'} class="randomImage"/>
+    getBeers(randomBeer)
+        .then((data) => {
+            console.log(data);
+            let beer = '';
+            for (let i = 0; i < data.length; i++) {
+                beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url || './image/beer.jpg'} class="randomImage"/>
     <h5 class="random_name">${data[i].name}</h5>
     
-    </div>`           
-                 }
-   img2.innerHTML += beer;
-   
+    </div>`
+            }
+            img1.innerHTML += beer;
+
+        });
+
+    getBeers(randomBeer)
+        .then((data) => {
+            console.log(data);
+            let beer = '';
+            for (let i = 0; i < data.length; i++) {
+                beer += `<div onclick="getSingleBeer(${data[i].id})"><img src=${data[i].image_url || './image/beer.jpg'} class="randomImage"/>
+    <h5 class="random_name">${data[i].name}</h5>
+    
+    </div>`
+            }
+            img2.innerHTML += beer;
+
         });
 
 }
