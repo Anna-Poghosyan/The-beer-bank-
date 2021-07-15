@@ -1,9 +1,13 @@
 const close_popUp = () => {
     const popup = document.querySelector('.popUp')
-  if (popup) {
-    popup.remove();
-  };
+    const modal = document.querySelector('.modal')
+
+    if (popup) {
+        popup.remove();
+        modal.style.display = "none";
+        document.body.style.overflow = 'auto';
+
+
+    };
 
 }
-
-   
