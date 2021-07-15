@@ -1,17 +1,16 @@
+const getBeers = (url) => {
 
-const getBeers = (url) =>{ 
+    return fetch(url)
+        .then((response) => {
 
- return fetch(url)
-.then((response) => {
-	
-	return response.json()
-})
-.then((data)=>{
-	
-	return data
-	
-})
-.catch(er=>{
-	console.log(er)
-})
+            return response.json()
+        })
+        .then((data) => {
+
+            return data
+
+        })
+        .catch(er => {
+            console.log(er)
+        })
 }
